@@ -20,15 +20,27 @@
 
 ---
 
-## 📸 Screenshots
+## 🖼️ Preview
 
 <div align="center">
-<img src="photos/scanner-hero.png" alt="WebVulnScan — Scan Results" width="80%" style="border-radius:12px" />
-<br/><br/>
-<img src="photos/scanner-results.png" alt="Detailed Results View" width="80%" style="border-radius:12px" />
-</div>
 
-> Drop your screenshots into the `photos/` folder and they'll appear here automatically.
+<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0d1117,100:0f1f35&height=260&text=%F0%9F%94%90%20WebVulnScan%20%E2%80%94%20Paste%20a%20URL%2C%20get%20a%20full%20security%20report&fontSize=22&fontColor=58a6ff&fontAlignY=35&desc=Score%3A%2074%2F100%20%20%7C%20%20Checks%3A%2038%20total%20%E2%80%A2%2022%20passed%20%E2%80%A2%2016%20failed%20%20%7C%20%20Critical%3A%200%20%20High%3A%205%20%20Medium%3A%207%20%20Low%3A%204&descSize=15&descAlignY=58&descColor=8b949e" width="85%" />
+
+<br/>
+
+![SSL](https://img.shields.io/badge/%F0%9F%94%92%20SSL%20Certificate-Valid%20%E2%9C%93-2ea043?style=flat-square)
+![TLS](https://img.shields.io/badge/%F0%9F%94%92%20TLS%201.3-Active%20%E2%9C%93-2ea043?style=flat-square)
+![CSP](https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20CSP-Missing%20%E2%9C%97-d73a49?style=flat-square)
+![HSTS](https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20HSTS-Missing%20%E2%9C%97-d73a49?style=flat-square)
+![XFrame](https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20X--Frame-Missing%20%E2%9C%97-d73a49?style=flat-square)
+
+![Cookies](https://img.shields.io/badge/%F0%9F%8D%AA%20Cookies-No%20Cookies%20%E2%9C%93-2ea043?style=flat-square)
+![CORS](https://img.shields.io/badge/%F0%9F%8C%90%20CORS-Restrictive%20%E2%9C%93-2ea043?style=flat-square)
+![RateLimit](https://img.shields.io/badge/%E2%8F%B1%EF%B8%8F%20Rate%20Limit-Not%20Detected%20%E2%9C%97-e36209?style=flat-square)
+![Sitemap](https://img.shields.io/badge/%F0%9F%97%BA%EF%B8%8F%20Sitemap-Missing%20%E2%9C%97-d73a49?style=flat-square)
+![Compression](https://img.shields.io/badge/%F0%9F%9A%80%20Compression-Enabled%20%E2%9C%93-2ea043?style=flat-square)
+
+</div>
 
 ---
 
