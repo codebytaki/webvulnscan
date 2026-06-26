@@ -1,145 +1,224 @@
-# WebVulnScan — Advanced Website Security & SEO Scanner
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,40:0f2942,100:1f6feb&height=220&section=header&text=WebVulnScan&fontSize=72&fontColor=58a6ff&fontAlignY=40&desc=150%2B%20Automated%20Security%20%26%20SEO%20Checks&descSize=20&descAlignY=62&descColor=8b949e&animation=fadeIn" />
+</div>
 
-A free, open-source website scanner that runs **150+ automated checks** across security, SEO, performance, privacy, and accessibility — all from a single URL.
+<div align="center">
 
-![Node.js](https://img.shields.io/badge/Node.js-18%2B-brightgreen)
-![Express](https://img.shields.io/badge/Express-4.x-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=18&pause=1200&color=58A6FF&center=true&vCenter=true&width=700&lines=SSL+%2F+TLS+%E2%80%A2+Security+Headers+%E2%80%A2+Injections;XSS+%E2%80%A2+SQLi+%E2%80%A2+NoSQL+%E2%80%A2+SSTI+%E2%80%A2+XXE;CORS+%E2%80%A2+Cookies+%E2%80%A2+Auth+%E2%80%A2+CSRF;SEO+%E2%80%A2+Performance+%E2%80%A2+Privacy+%E2%80%A2+WCAG;Scan+any+URL+in+seconds+%E2%80%94+no+signup+needed+%F0%9F%9A%80)](https://git.io/typing-svg)
 
----
+</div>
 
-## What It Checks
+<div align="center">
 
-| Category | Checks |
-|---|---|
-| **SSL / TLS** | Certificate validity, expiry, TLS version, weak ciphers |
-| **Security Headers** | CSP, HSTS, X-Frame-Options, CORS, Referrer-Policy, Permissions-Policy |
-| **Injection** | XSS (reflected + DOM), SQL injection, NoSQL injection, SSTI, XXE, LDAP |
-| **Cookies** | Secure, HttpOnly, SameSite flags, expiry |
-| **Exposed Files** | `.env`, `.git`, backup files, config files, SSH keys, phpinfo |
-| **HTTP Methods** | TRACE, PUT, DELETE, CONNECT detection |
-| **Authentication** | Admin panel exposure, JWT analysis, default credentials, HTTP Basic Auth |
-| **DNS & Email** | SPF, DKIM, DMARC, CAA records |
-| **Performance** | Response time, page size, compression, caching, render-blocking scripts |
-| **SEO** | Title, meta description, H1, canonical, Open Graph, sitemap, robots.txt |
-| **Privacy / GDPR** | Cookie consent, privacy policy, third-party trackers, data transfers |
-| **Accessibility** | WCAG 2.1 — lang attribute, ARIA labels, skip links, tab order |
-| **Supply Chain** | Subresource Integrity (SRI), outdated libraries, GTM consent |
-| **API Security** | GraphQL introspection, unauthenticated endpoints, Swagger exposure |
-| **Infrastructure** | HTTP→HTTPS redirect, dev subdomains, DNSSEC |
-| **Rate Limiting** | Burst detection, payload size limits |
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-3C873A?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-4.x-000000?style=for-the-badge&logo=express&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-58a6ff?style=for-the-badge)
+![Checks](https://img.shields.io/badge/Checks-150%2B-1f6feb?style=for-the-badge&logo=checkmarx&logoColor=white)
+![Zero Signup](https://img.shields.io/badge/Zero-Signup-2ea043?style=for-the-badge&logo=key&logoColor=white)
+
+</div>
 
 ---
 
-## Quick Start
+## 📸 Screenshots
+
+<div align="center">
+<img src="photos/scanner-hero.png" alt="WebVulnScan — Scan Results" width="80%" style="border-radius:12px" />
+<br/><br/>
+<img src="photos/scanner-results.png" alt="Detailed Results View" width="80%" style="border-radius:12px" />
+</div>
+
+> Drop your screenshots into the `photos/` folder and they'll appear here automatically.
+
+---
+
+## ⚡ What It Scans
+
+<div align="center">
+
+| Category | Checks | What It Catches |
+|:---:|:---:|:---|
+| 🔒 **SSL / TLS** | 6 | Certificate expiry, weak ciphers, TLS version |
+| 🛡️ **Security Headers** | 11 | CSP, HSTS, X-Frame, CORS, Referrer-Policy |
+| 💉 **Injection** | 15 | XSS, SQLi, NoSQL, SSTI, XXE, LDAP, Command |
+| 🍪 **Cookies** | 7 | Secure, HttpOnly, SameSite, expiry |
+| 📁 **Exposed Files** | 25 | `.env`, `.git`, backups, SSH keys, phpinfo |
+| 🔑 **Authentication** | 10 | Admin panels, JWT issues, default creds |
+| 🌐 **DNS & Email** | 10 | SPF, DKIM, DMARC, CAA records |
+| 🚀 **Performance** | 10 | Response time, compression, caching, CDN |
+| 🔍 **SEO** | 13 | Title, meta, canonical, OG tags, sitemap |
+| 🔐 **Privacy / GDPR** | 8 | Cookie consent, trackers, privacy policy |
+| ♿ **Accessibility** | 10 | WCAG 2.1, ARIA, tab order, skip links |
+| 🔗 **Supply Chain** | 5 | SRI hashes, outdated libraries, GTM |
+| 📊 **API Security** | 5 | GraphQL, unauth endpoints, Swagger |
+| 🏗️ **Infrastructure** | 5 | HTTP redirect, dev subdomains, DNSSEC |
+| ⏱️ **Rate Limiting** | 4 | Burst detection, payload size |
+
+</div>
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-# 1. Clone
+# Clone
 git clone https://github.com/codebytaki/webvulnscan.git
 cd webvulnscan
 
-# 2. Install
+# Install
 npm install
 
-# 3. Run
+# Run
 npm start
-# → http://localhost:3000
 ```
 
-Node.js 18+ required. No API keys needed for the scanner.
+Open **http://localhost:3000** — paste any URL and hit scan. That's it.
+
+> **Node.js 18+** required. No API keys. No accounts. Fully offline-capable.
 
 ---
 
-## Optional: Save Scan History (Supabase)
+## 🖥️ API Usage
 
-The scanner works fully without an account. To enable login and scan history:
-
-1. Create a free project at [supabase.com](https://supabase.com)
-2. Run the SQL in `supabase-schema.sql` in your Supabase SQL editor
-3. Open `public/supabase-client.js` and paste your project URL and anon key
-
-```js
-const SUPABASE_URL  = 'https://your-project.supabase.co';
-const SUPABASE_ANON = 'your-anon-public-key';
-```
-
-> Use the **anon/public** key only — never the service role key.
-
----
-
-## Project Structure
-
-```
-webvulnscan/
-├── server.js              # Express backend — all 150+ scan checks
-├── supabase-schema.sql    # DB schema + RLS policies (optional)
-├── public/
-│   ├── index.html         # Landing page with inline scanner
-│   ├── scan.html          # Full-page scan results view
-│   ├── dashboard.html     # Scan history dashboard
-│   ├── login.html         # Auth page
-│   ├── app.js             # Frontend scan logic & result rendering
-│   ├── dashboard.js       # Dashboard data loading
-│   ├── supabase-client.js # Supabase SDK init (configure here)
-│   └── shared.css         # Global styles
-└── package.json
-```
-
----
-
-## How Scoring Works
-
-Each check produces a `passed` / `failed` result with a severity weight:
-
-| Severity | Weight |
-|---|---|
-| Critical | 15 |
-| High | 8 |
-| Medium | 3 |
-| Low | 1 |
-
-The final score (0–100) penalises failed checks proportionally. A perfect site scores 100.
-
----
-
-## Deploying
-
-Works on any platform that runs Node.js:
+Scan programmatically via the REST endpoint:
 
 ```bash
-# Railway / Render / Fly.io
-npm start
-
-# Docker
-docker run -p 3000:3000 node:18-alpine sh -c "npm install && npm start"
+curl -X POST http://localhost:3000/api/scan \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://yoursite.com"}'
 ```
 
-Set `PORT` environment variable to change the default port (3000).
-
----
-
-## Contributing
-
-Pull requests are welcome. To add a new check:
-
-1. Add a function `checkMyThing(urlStr, body, headers)` that returns an array of result objects
-2. Call it inside the `Promise.all` in `/api/scan`
-3. Spread the results into `allChecks`
-
-Each result object shape:
-```js
+**Response shape:**
+```json
 {
-  passed: false,
-  severity: 'high',        // critical | high | medium | low
-  cat: 'Security',
-  title: 'Short check name',
-  description: 'What the issue means and why it matters.',
-  fix: '// Optional code snippet showing the fix'
+  "score": 74,
+  "totalChecks": 38,
+  "passedChecks": 22,
+  "failedChecks": 16,
+  "severityCounts": { "critical": 0, "high": 5, "medium": 7, "low": 4 },
+  "issues": [
+    {
+      "passed": false,
+      "severity": "high",
+      "cat": "Headers",
+      "title": "Missing Content-Security-Policy",
+      "description": "No CSP header...",
+      "fix": "res.setHeader('Content-Security-Policy', ...)"
+    }
+  ],
+  "responseTime": 312,
+  "pageSize": 14820
 }
 ```
 
 ---
 
-## License
+## 💾 Optional: Save History with Supabase
 
-MIT — free to use, modify, and deploy.
+The scanner is fully functional without an account. To enable login + scan history:
+
+1. Create a free project at [supabase.com](https://supabase.com)
+2. Run `supabase-schema.sql` in your Supabase SQL editor
+3. Edit `public/supabase-client.js`:
+
+```js
+const SUPABASE_URL  = 'https://your-project.supabase.co';
+const SUPABASE_ANON = 'your-anon-public-key';   // public key only — never service role
+```
+
+Row Level Security is enforced — users only ever see their own scans.
+
+---
+
+## 📁 Project Structure
+
+```
+webvulnscan/
+├── server.js              ← All 150+ scan checks (Node.js / Express)
+├── supabase-schema.sql    ← DB schema + RLS (optional)
+├── photos/                ← Screenshots for this README
+├── public/
+│   ├── index.html         ← Landing page + inline scanner modal
+│   ├── scan.html          ← Full-page results view
+│   ├── dashboard.html     ← Scan history (requires Supabase)
+│   ├── login.html         ← Auth page
+│   ├── app.js             ← Frontend logic + result rendering
+│   ├── dashboard.js       ← Dashboard data loader
+│   ├── supabase-client.js ← Configure your Supabase keys here
+│   └── shared.css         ← Global dark theme styles
+└── package.json
+```
+
+---
+
+## 📐 How Scoring Works
+
+Each check returns `passed: true/false` with a severity weight:
+
+| Severity | Weight | Example |
+|:---:|:---:|:---|
+| 🔴 Critical | 15 | SQL injection confirmed |
+| 🟠 High | 8 | Missing CSP header |
+| 🟡 Medium | 3 | Missing canonical tag |
+| 🔵 Low | 1 | Missing Twitter card |
+
+`score = 100 − (total_penalty / max_possible_penalty × 100)`
+
+A perfect site scores **100**. Real-world sites typically score 40–75.
+
+---
+
+## 🤝 Adding a New Check
+
+```js
+// 1. Write your check function
+async function checkMyThing(urlStr, body, headers) {
+  const r = [];
+  // ... your logic
+  r.push({
+    passed: false,
+    severity: 'high',          // critical | high | medium | low
+    cat: 'Security',
+    title: 'Short check name',
+    description: 'What it means and why it matters.',
+    fix: '// Optional code snippet'
+  });
+  return r;
+}
+
+// 2. Add to the Promise.all in /api/scan
+// 3. Spread into allChecks
+```
+
+PRs are welcome.
+
+---
+
+## 🚢 Deploy
+
+```bash
+# Any Node.js host (Railway, Render, Fly.io, VPS)
+PORT=8080 npm start
+
+# Docker one-liner
+docker run -p 3000:3000 -v $(pwd):/app -w /app node:18-alpine npm start
+```
+
+---
+
+## 👤 Author
+
+Built by **[MD Taki](https://github.com/codebytaki)** — Security Researcher · AI Developer · Bug Hunter
+
+[![GitHub](https://img.shields.io/badge/GitHub-codebytaki-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/codebytaki)
+[![Bug Bounty](https://img.shields.io/badge/Bug%20Bounty-Hunter-critical?style=for-the-badge&logo=bugcrowd&logoColor=white)](https://github.com/codebytaki/bug-hunter-toolkit)
+
+---
+
+## 📄 License
+
+MIT — free to use, modify, fork, and deploy.
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f6feb,50:0f2942,100:0d1117&height=100&section=footer" />
+</div>
