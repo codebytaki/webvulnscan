@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan Results — CheckVibe</title>
+  <meta name="description" content="Detailed security scan report.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .scan-page { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    .report-wrap {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.7), 0 0 0 1px var(--border-green);
+    }
+    #scanResults { min-height: 200px; }
+    .scan-loading-inline { padding: 72px 40px; text-align: center; }
+    .scan-err { padding: 60px 40px; text-align: center; color: var(--text2); }
+    .scan-err h3 { font-size: 20px; margin-bottom: 8px; color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">
+      <div class="orb"><i></i><i></i><i></i></div>
+      <span>CheckVibe</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Scanner</a>
+      <a href="/dashboard">Dashboard</a>
+      <div id="navAuthSlot"></div>
+    </div>
+  </nav>
+
+  <div class="scan-page">
+    <div class="report-wrap">
+      <div id="scanResults">
+        <div class="scan-loading-inline">
+          <div class="loading-spinner"></div>
+          <div class="loading-title">Loading scan…</div>
+        </div>
+      </div>
+      <div id="savePrompt" style="display:none;text-align:center;padding:16px"></div>
+    </div>
+  </div>
+
+  <script src="supabase-client.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (async function runPageScan() {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get('url');
+      if (!url) {
+        document.getElementById('scanResults').innerHTML =
+          '<div class="scan-err"><h3>No URL specified</h3><p>Provide a <code>?url=</code> parameter to scan.</p><a href="/" class="btn btn-primary" style="margin-top:16px">Go to scanner</a></div>';
+        return;
+      }
+
+      // Reuse the scan infrastructure from app.js
+      showLoadingUI(url);
+      try {
+        const res = await fetch('/api/scan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await res.json();
+        renderReport(data, document.getElementById('scanResults'));
+        document.title = `Score ${data.score} — ${url} | CheckVibe`;
+        if (window.sb?.auth?.getUser()) offerSave(data);
+      } catch (err) {
+        document.getElementById('scanResults').innerHTML =
+          `<div class="scan-err"><h3>Scan failed</h3><p>${esc(err.message)}</p><a href="/" class="btn btn-primary" style="margin-top:16px">Try again</a></div>`;
+      }
+    })();
+  </script>
+</body>
+</html>

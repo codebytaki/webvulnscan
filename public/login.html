@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — CheckVibe</title>
+  <meta name="description" content="Sign in to CheckVibe to save scan history and track your security score over time.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .auth-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+    .auth-card {
+      width: 100%; max-width: 420px;
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: var(--radius-lg); padding: 36px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .auth-logo { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 800; margin-bottom: 28px; text-decoration: none; color: var(--text); }
+    .auth-logo .orb { width: 32px; height: 32px; }
+    .auth-logo .orb i { width: 19px; height: 19px; }
+    .auth-title { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+    .auth-sub { color: var(--text2); font-size: 14px; margin-bottom: 24px; }
+
+    /* Tabs */
+    .auth-tabs { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .auth-tab {
+      flex: 1; padding: 10px 0; font-size: 14px; font-weight: 600;
+      text-align: center; cursor: pointer; background: none; border: none;
+      color: var(--text3); border-bottom: 2px solid transparent; margin-bottom: -1px;
+      font-family: var(--sans); transition: all 0.15s;
+    }
+    .auth-tab:hover { color: var(--text2); }
+    .auth-tab.active { color: var(--text); border-bottom-color: var(--green); }
+
+    /* Form */
+    .auth-form { display: flex; flex-direction: column; gap: 16px; }
+    .auth-form .field label { font-size: 13px; font-weight: 600; color: var(--text2); }
+    .auth-form .input { width: 100%; }
+    .auth-error { color: var(--red); font-size: 13px; text-align: center; min-height: 20px; }
+    .auth-submit { width: 100%; justify-content: center; }
+
+    /* Divider */
+    .auth-divider { display: flex; align-items: center; gap: 12px; margin: 20px 0; color: var(--text3); font-size: 12px; font-family: var(--mono); }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* OAuth buttons */
+    .oauth-list { display: flex; flex-direction: column; gap: 10px; }
+    .oauth-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 11px 16px; font-size: 14px; font-weight: 600;
+      background: var(--bg3); border: 1px solid var(--border2); border-radius: var(--radius);
+      color: var(--text); cursor: pointer; font-family: var(--sans); transition: all 0.15s;
+    }
+    .oauth-btn:hover { border-color: var(--text2); background: rgba(255,255,255,0.04); }
+    .oauth-btn .icon { font-size: 18px; }
+
+    .auth-footer { text-align: center; margin-top: 20px; font-size: 13px; color: var(--text3); }
+    .auth-footer a { color: var(--green); text-decoration: none; }
+    .auth-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-card">
+      <a href="/" class="auth-logo">
+        <div class="orb"><i></i><i></i><i></i></div>
+        <span>CheckVibe</span>
+      </a>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab('signin', this)">Sign in</button>
+        <button class="auth-tab" onclick="switchAuthTab('signup', this)">Create account</button>
+      </div>
+
+      <!-- Sign In -->
+      <form class="auth-form" id="formSignin" onsubmit="handleAuth(event, false)">
+        <div class="field">
+          <label for="signinEmail">Email</label>
+          <input class="input" id="signinEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="signinPass">Password</label>
+          <input class="input" id="signinPass" type="password" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+        <div class="auth-error" id="signinError"></div>
+        <button class="btn btn-primary auth-submit" type="submit" id="signinBtn">Sign in</button>
+      </form>
+
+      <!-- Sign Up -->
+      <form class="auth-form" id="formSignup" style="display:none" onsubmit="handleAuth(event, true)">
+        <div class="field">
+          <label for="signupEmail">Email</label>
+          <input class="input" id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="signupPass">Password</label>
+          <input class="input" id="signupPass" type="password" placeholder="Min 8 characters" autocomplete="new-password" minlength="8" required>
+        </div>
+        <div class="auth-error" id="signupError"></div>
+        <button class="btn btn-primary auth-submit" type="submit" id="signupBtn">Create account</button>
+      </form>
+
+      <div class="auth-divider">or continue with</div>
+
+      <div class="oauth-list">
+        <button class="oauth-btn" onclick="oauthSignIn('github')">
+          <span class="icon">🐙</span> GitHub
+        </button>
+        <button class="oauth-btn" onclick="oauthSignIn('google')">
+          <span class="icon">🔴</span> Google
+        </button>
+      </div>
+
+      <div class="auth-footer">
+        <a href="/">← Back to scanner</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="supabase-client.js"></script>
+  <script>
+    function switchAuthTab(tab, btn) {
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('formSignin').style.display = tab === 'signin' ? '' : 'none';
+      document.getElementById('formSignup').style.display = tab === 'signup' ? '' : 'none';
+    }
+
+    async function handleAuth(e, isSignUp) {
+      e.preventDefault();
+      const prefix = isSignUp ? 'signup' : 'signin';
+      const email = document.getElementById(prefix + 'Email').value.trim();
+      const pass = document.getElementById(prefix + 'Pass').value;
+      const errEl = document.getElementById(prefix + 'Error');
+      const btn = document.getElementById(prefix + 'Btn');
+      errEl.textContent = '';
+      btn.disabled = true; btn.textContent = '…';
+
+      if (!window.sb) { errEl.textContent = 'Auth not configured. Connect Supabase first.'; btn.disabled = false; btn.textContent = isSignUp ? 'Create account' : 'Sign in'; return; }
+
+      try {
+        const { error } = isSignUp
+          ? await window.sb.auth.signUp({ email, password: pass })
+          : await window.sb.auth.signInWithPassword({ email, password: pass });
+        if (error) throw error;
+        // Redirect on success
+        window.location.href = '/dashboard';
+      } catch (err) {
+        errEl.textContent = err.message || 'Authentication failed';
+        btn.disabled = false;
+        btn.textContent = isSignUp ? 'Create account' : 'Sign in';
+      }
+    }
+
+    async function oauthSignIn(provider) {
+      if (!window.sb) { alert('Auth not configured. Connect Supabase first.'); return; }
+      const { error } = await window.sb.auth.signInWithOAuth({
+        provider,
+        options: { redirectTo: window.location.origin + '/dashboard' }
+      });
+      if (error) alert(error.message);
+    }
+  </script>
+</body>
+</html>

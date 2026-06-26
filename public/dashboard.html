@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — CheckVibe</title>
+  <meta name="description" content="Your CheckVibe scan history and security stats.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .dash { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+    .dash-head { margin-bottom: 36px; }
+    .dash-title { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+    .dash-sub { color: var(--text2); font-size: 15px; }
+
+    /* Stats row */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 36px; }
+    .stat-card {
+      background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px; text-align: center;
+    }
+    .stat-card .val { font-size: 32px; font-weight: 900; }
+    .stat-card .label { font-size: 12px; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+    /* Scan history */
+    .history-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .history-title { font-size: 18px; font-weight: 700; }
+    .scan-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .scan-table th {
+      padding: 10px 14px; text-align: left;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+      color: var(--text3); border-bottom: 1px solid var(--border); background: var(--bg2);
+    }
+    .scan-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); }
+    .scan-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .scan-url-cell { font-family: var(--mono); font-size: 13px; color: var(--text2); max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .scan-score-cell { font-weight: 800; font-size: 16px; }
+    .scan-date-cell { color: var(--text2); font-size: 13px; font-family: var(--mono); }
+    .rescan-btn { font-size: 11px; }
+
+    .empty-state { text-align: center; padding: 60px 24px; color: var(--text2); }
+    .empty-state h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .empty-state p { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">
+      <div class="orb"><i></i><i></i><i></i></div>
+      <span>CheckVibe</span>
+    </a>
+    <div class="nav-links">
+      <a href="/">Scanner</a>
+      <a href="/dashboard" style="color:var(--green)">Dashboard</a>
+      <div id="navAuthSlot"></div>
+    </div>
+  </nav>
+
+  <div class="dash">
+    <div class="dash-head">
+      <h1 class="dash-title">Dashboard</h1>
+      <p class="dash-sub">Your scan history and security stats.</p>
+    </div>
+
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card"><div class="val" id="statTotal">—</div><div class="label">Total Scans</div></div>
+      <div class="stat-card"><div class="val" id="statAvg" style="color:var(--green)">—</div><div class="label">Avg Score</div></div>
+      <div class="stat-card"><div class="val" id="statCrit" style="color:var(--red)">—</div><div class="label">Critical Issues</div></div>
+      <div class="stat-card"><div class="val" id="statHigh" style="color:var(--orange)">—</div><div class="label">High Issues</div></div>
+    </div>
+
+    <div class="history-head">
+      <h2 class="history-title">Scan History</h2>
+      <a href="/" class="nav-cta">New scan →</a>
+    </div>
+
+    <div id="scanHistory">
+      <div class="empty-state">
+        <h3>No scans yet</h3>
+        <p>Run your first scan to start tracking security over time.</p>
+        <a href="/" class="btn btn-primary">Scan a URL</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="supabase-client.js"></script>
+  <script src="app.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
