@@ -1,20 +1,18 @@
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,40:0f2942,100:1f6feb&height=220&section=header&text=WebVulnScan&fontSize=72&fontColor=58a6ff&fontAlignY=40&desc=150%2B%20Automated%20Security%20%26%20SEO%20Checks&descSize=20&descAlignY=62&descColor=8b949e&animation=fadeIn" />
-</div>
 
-<div align="center">
+# 🔐 WebVulnScan
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=18&pause=1200&color=58A6FF&center=true&vCenter=true&width=700&lines=SSL+%2F+TLS+%E2%80%A2+Security+Headers+%E2%80%A2+Injections;XSS+%E2%80%A2+SQLi+%E2%80%A2+NoSQL+%E2%80%A2+SSTI+%E2%80%A2+XXE;CORS+%E2%80%A2+Cookies+%E2%80%A2+Auth+%E2%80%A2+CSRF;SEO+%E2%80%A2+Performance+%E2%80%A2+Privacy+%E2%80%A2+WCAG;Scan+any+URL+in+seconds+%E2%80%94+no+signup+needed+%F0%9F%9A%80)](https://git.io/typing-svg)
+### 150+ Automated Security, SEO & Performance Checks
 
-</div>
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=700&size=17&pause=1200&color=58A6FF&center=true&vCenter=true&width=700&lines=SSL+%2F+TLS+%E2%80%A2+Security+Headers+%E2%80%A2+Injections;XSS+%E2%80%A2+SQLi+%E2%80%A2+NoSQL+%E2%80%A2+SSTI+%E2%80%A2+XXE;CORS+%E2%80%A2+Cookies+%E2%80%A2+Auth+%E2%80%A2+CSRF;SEO+%E2%80%A2+Performance+%E2%80%A2+Privacy+%E2%80%A2+WCAG;Scan+any+URL+in+seconds+%E2%80%94+no+signup+needed+%F0%9F%9A%80)](https://git.io/typing-svg)
 
-<div align="center">
+<br/>
 
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-3C873A?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-4.x-000000?style=for-the-badge&logo=express&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-58a6ff?style=for-the-badge)
-![Checks](https://img.shields.io/badge/Checks-150%2B-1f6feb?style=for-the-badge&logo=checkmarx&logoColor=white)
-![Zero Signup](https://img.shields.io/badge/Zero-Signup-2ea043?style=for-the-badge&logo=key&logoColor=white)
+![Checks](https://img.shields.io/badge/Checks-150%2B-1f6feb?style=for-the-badge)
+![Zero Signup](https://img.shields.io/badge/Zero%20Signup-Required-2ea043?style=for-the-badge)
 
 </div>
 
@@ -24,21 +22,42 @@
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=rect&color=0:0d1117,100:0f1f35&height=260&text=%F0%9F%94%90%20WebVulnScan%20%E2%80%94%20Paste%20a%20URL%2C%20get%20a%20full%20security%20report&fontSize=22&fontColor=58a6ff&fontAlignY=35&desc=Score%3A%2074%2F100%20%20%7C%20%20Checks%3A%2038%20total%20%E2%80%A2%2022%20passed%20%E2%80%A2%2016%20failed%20%20%7C%20%20Critical%3A%200%20%20High%3A%205%20%20Medium%3A%207%20%20Low%3A%204&descSize=15&descAlignY=58&descColor=8b949e" width="85%" />
+**Sample scan output for a typical site:**
 
-<br/>
+</div>
 
-![SSL](https://img.shields.io/badge/%F0%9F%94%92%20SSL%20Certificate-Valid%20%E2%9C%93-2ea043?style=flat-square)
-![TLS](https://img.shields.io/badge/%F0%9F%94%92%20TLS%201.3-Active%20%E2%9C%93-2ea043?style=flat-square)
-![CSP](https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20CSP-Missing%20%E2%9C%97-d73a49?style=flat-square)
-![HSTS](https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20HSTS-Missing%20%E2%9C%97-d73a49?style=flat-square)
-![XFrame](https://img.shields.io/badge/%F0%9F%9B%A1%EF%B8%8F%20X--Frame-Missing%20%E2%9C%97-d73a49?style=flat-square)
+```
+┌─────────────────────────────────────────────────────────┐
+│  🔐 WebVulnScan — https://example.com                   │
+│  Score: 74 / 100   ●  38 checks  ●  312ms               │
+├──────────┬──────────┬──────────┬──────────┐             │
+│ Critical │   High   │  Medium  │   Low    │             │
+│    0     │    5     │    7     │    4     │             │
+└──────────┴──────────┴──────────┴──────────┘             │
+│                                                          │
+│  ✗ HIGH    Missing Content-Security-Policy               │
+│  ✗ HIGH    Missing HSTS Header                           │
+│  ✗ HIGH    Missing X-Frame-Options                       │
+│  ✗ MEDIUM  Missing X-Content-Type-Options                │
+│  ✗ MEDIUM  robots.txt Missing                            │
+│  ✗ MEDIUM  No Rate Limiting Detected                     │
+│  ✓ LOW     SSL Certificate Valid (365 days)              │
+│  ✓ LOW     TLS 1.3 Active                                │
+│  ✓ LOW     Compression Enabled (br)                      │
+│  ✓ LOW     CORS: Restrictive (Good)                      │
+└─────────────────────────────────────────────────────────┘
+```
 
-![Cookies](https://img.shields.io/badge/%F0%9F%8D%AA%20Cookies-No%20Cookies%20%E2%9C%93-2ea043?style=flat-square)
-![CORS](https://img.shields.io/badge/%F0%9F%8C%90%20CORS-Restrictive%20%E2%9C%93-2ea043?style=flat-square)
-![RateLimit](https://img.shields.io/badge/%E2%8F%B1%EF%B8%8F%20Rate%20Limit-Not%20Detected%20%E2%9C%97-e36209?style=flat-square)
-![Sitemap](https://img.shields.io/badge/%F0%9F%97%BA%EF%B8%8F%20Sitemap-Missing%20%E2%9C%97-d73a49?style=flat-square)
-![Compression](https://img.shields.io/badge/%F0%9F%9A%80%20Compression-Enabled%20%E2%9C%93-2ea043?style=flat-square)
+<div align="center">
+
+![SSL](https://img.shields.io/badge/%F0%9F%94%92%20SSL-Valid%20%E2%9C%93-2ea043?style=flat-square)
+![TLS](https://img.shields.io/badge/TLS%201.3-Active%20%E2%9C%93-2ea043?style=flat-square)
+![CSP](https://img.shields.io/badge/CSP-Missing%20%E2%9C%97-d73a49?style=flat-square)
+![HSTS](https://img.shields.io/badge/HSTS-Missing%20%E2%9C%97-d73a49?style=flat-square)
+![CORS](https://img.shields.io/badge/CORS-Restrictive%20%E2%9C%93-2ea043?style=flat-square)
+![Rate](https://img.shields.io/badge/Rate%20Limit-Not%20Detected%20%E2%9C%97-e36209?style=flat-square)
+![Compression](https://img.shields.io/badge/Compression-Enabled%20%E2%9C%93-2ea043?style=flat-square)
+![Sitemap](https://img.shields.io/badge/Sitemap-Missing%20%E2%9C%97-d73a49?style=flat-square)
 
 </div>
 
@@ -232,5 +251,9 @@ Built by **[MD Taki](https://github.com/codebytaki)** — Security Researcher ·
 MIT — free to use, modify, fork, and deploy.
 
 <div align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1f6feb,50:0f2942,100:0d1117&height=100&section=footer" />
+
+---
+
+*Built by [MD Taki](https://github.com/codebytaki) — Security Researcher · AI Developer · Bug Hunter*
+
 </div>
